@@ -6,7 +6,7 @@
 			"Stats":
 			{
 				"LifeBase":0,
-				"AttackBase":100,
+				"AttackBase":110,
 				"DefenseBase":0,
 			},
 			"Habilities":
@@ -42,7 +42,7 @@
 			{
 				"LifeBase":1000,
 				"AttackBase":100,
-				"DefenseBase":0,
+				"DefenseBase":30,
 			},
 			"Habilities":
 			{

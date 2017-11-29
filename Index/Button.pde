@@ -1,9 +1,10 @@
 class Button{
 	String text;
-	float x, y, x2, y2;
+	float x, y, x2, y2, tWidth, tHeight;
 	color back, tx;
 	int r, g, b, a;
 	void paint(){
+		button.resize();
 		if(!this.selected())
 			fill(this.back);
 		else
@@ -38,6 +39,9 @@ class Button{
 		else
 			return false;
 	}
+	void resize(){
+		init(text,(x-10)/tWidth,(y-10)/tHeight,(x2+10)/tWidth,(y2+10)/tHeight,back,tx,r,g,b,a);
+	}
 	void init(String text, float x, float y, float x2, float y2, color back, color tx, int r, int g, int b, int a){
 		this.text = text;
 		this.x = (width*x)+10;
@@ -50,6 +54,8 @@ class Button{
 		this.g = g;
 		this.b = b;
 		this.a = a;
+		this.tWidth = width;
+		this.tHeight = height;
 	}
 	Button(String text, float posX, float posY, float posX2, float posY2){
 		init(text,posX,posY,posX2,y2,color(30),color(200),0,0,0,0);

@@ -1,26 +1,23 @@
 class Button{
 	String text;
 	float x, y, x2, y2, tWidth, tHeight;
-	color back, tx;
-	int r, g, b, a;
+	color back, tx, sBack, sTx;
 	void paint(){
-		button.resize();
-		if(!this.selected())
-			fill(this.back);
+		this.resize();
+		if(this.selected())
+			fill(this.sBack);
 		else
-			fill(change(this.back));
+			fill(this.back);
 		rectMode(CORNERS);
 		rect(this.x, this.y, this.x2, this.y2, 10);
-		if(!this.selected())
-			fill(this.tx);
+		if(this.selected())
+			fill(this.sTx);
 		else
-			fill(change(this.tx));
+			fill(this.tx);
+
 		textFont(font,y2-y);
 		textAlign(CENTER,CENTER);
 		text(this.text, this.x, this.y, this.x2, this.y2);
-	}
-	color change(color col){
-		return color(red(col)+this.r,green(col)+this.g,blue(col)+this.b,alpha(col)+this.a);
 	}
 	boolean selected(){
 		if(mouseX>this.x && mouseY>this.y && mouseX<this.x2 && mouseY<this.y2)
@@ -40,9 +37,9 @@ class Button{
 			return false;
 	}
 	void resize(){
-		init(text,(x-10)/tWidth,(y-10)/tHeight,(x2+10)/tWidth,(y2+10)/tHeight,back,tx,r,g,b,a);
+		init(this.text,(this.x-10)/this.tWidth,(this.y-10)/this.tHeight,(this.x2+10)/this.tWidth,(this.y2+10)/this.tHeight,this.back,this.tx,this.sBack,this.sTx);
 	}
-	void init(String text, float x, float y, float x2, float y2, color back, color tx, int r, int g, int b, int a){
+	void init(String text, float x, float y, float x2, float y2, color back, color tx, color sBack, color sTx){
 		this.text = text;
 		this.x = (width*x)+10;
 		this.y = (height*y)+10;
@@ -50,20 +47,18 @@ class Button{
 		this.y2 = (height*y2)-10;
 		this.back = back;
 		this.tx = tx;
-		this.r = r;
-		this.g = g;
-		this.b = b;
-		this.a = a;
 		this.tWidth = width;
 		this.tHeight = height;
+		this.sBack = sBack;
+		this.sTx = sTx;
 	}
 	Button(String text, float posX, float posY, float posX2, float posY2){
-		init(text,posX,posY,posX2,y2,color(30),color(200),0,0,0,0);
+		init(text,posX,posY,posX2,posY2,color(#767676),color(#FF7F7F),color(#CFCFCF),color(#FF1515));
 	}
 	Button(String text, float posX, float posY, float posX2, float posY2, color back, color tx){
-		init(text,posX,posY,posX2,y2,back,tx,0,0,0,0);
+		init(text,posX,posY,posX2,posY2,back,tx,color(#CFCFCF),color(#FF1515));
 	}
-	Button(String text, float posX, float posY, float posX2, float posY2, color back, color tx, int r, int g, int b, int a){
-		init(text,posX,posY,posX2,posY2,back,tx,r,g,b,a);
+	Button(String text, float posX, float posY, float posX2, float posY2, color back, color tx, color sBack, color sTx){
+		init(text,posX,posY,posX2,posY2,back,tx,sBack,sTx);
 	}
 }

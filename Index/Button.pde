@@ -1,64 +1,71 @@
-class Button{
+boolean click;
+void mouseClicked () {
+	click = true;
+}
+class Button {
 	String text;
-	float x, y, x2, y2, tWidth, tHeight;
-	color back, tx, sBack, sTx;
-	void paint(){
-		this.resize();
-		if(this.selected())
-			fill(this.sBack);
-		else
-			fill(this.back);
-		rectMode(CORNERS);
-		rect(this.x, this.y, this.x2, this.y2, 10);
-		if(this.selected())
-			fill(this.sTx);
-		else
-			fill(this.tx);
+	float x1, y1, x2, y2;
+	color nback, ntxt, sback, stxt, back, txt;
+	int tHeight, tWidth;
 
-		textFont(font,y2-y);
+	void paint () {
+		this.resize();
+		noStroke();
+		rectMode(CORNERS);
+		this.setTextSize();
 		textAlign(CENTER,CENTER);
-		text(this.text, this.x, this.y, this.x2, this.y2);
+		this.coloring();
+		fill(back);
+		rect(this.x1,this.y1,this.x2,this.y2);
+		fill(txt);
+		text(this.text, this.x1, this.y1, this.x2, this.y2);
+		click = false;													/*Needs to improve*/
 	}
-	boolean selected(){
-		if(mouseX>this.x && mouseY>this.y && mouseX<this.x2 && mouseY<this.y2)
-			return true;
-		else
-			return false;
+	void resize () {
+		this.setPos(this.x1*width/tWidth,this.y1*height/tHeight,this.x2*width/tWidth,this.y2*height/tHeight);
 	}
-	int oseg = 0;
-	boolean clicked(){
-		if(!selected())
-			this.oseg = 0;
-		if(selected() && mousePressed && this.oseg == 0){
-			this.oseg = 1;
-			return true;
-		}
-		else
-			return false;
+	void setTextSize () {
+		textSize(this.y2-this.y1-50);									/*Needs to improve*/
 	}
-	void resize(){
-		init(this.text,(this.x-10)/this.tWidth,(this.y-10)/this.tHeight,(this.x2+10)/this.tWidth,(this.y2+10)/this.tHeight,this.back,this.tx,this.sBack,this.sTx);
+	void coloring () {
+		this.back = this.selected()? this.sback : this.nback;
+		this.txt = this.selected()? this.stxt : this.ntxt;
 	}
-	void init(String text, float x, float y, float x2, float y2, color back, color tx, color sBack, color sTx){
+	boolean selected () {
+		return mouseX > this.x1 && mouseX < this.x2 && mouseY > this.y1 && mouseY < this.y2? true : false;
+	}
+	boolean clicked () {
+		return click && this.selected()? true : false;
+	}
+	void setText (String text) {
 		this.text = text;
-		this.x = (width*x)+10;
-		this.y = (height*y)+10;
-		this.x2 = (width*x2)-10;
-		this.y2 = (height*y2)-10;
-		this.back = back;
-		this.tx = tx;
-		this.tWidth = width;
+	}
+	void setPos (float x1, float y1, float x2, float y2) {
+		this.x1 = x1;
+		this.y1 = y1;
+		this.x2 = x2;
+		this.y2 = y2;
 		this.tHeight = height;
-		this.sBack = sBack;
-		this.sTx = sTx;
+		this.tWidth = width;
 	}
-	Button(String text, float posX, float posY, float posX2, float posY2){
-		init(text,posX,posY,posX2,posY2,color(#767676),color(#FF7F7F),color(#CFCFCF),color(#FF1515));
+	void setColor (color background, color text) {
+		this.nback = background;
+		this.ntxt = text;
 	}
-	Button(String text, float posX, float posY, float posX2, float posY2, color back, color tx){
-		init(text,posX,posY,posX2,posY2,back,tx,color(#CFCFCF),color(#FF1515));
+	void setSelectedColor (color background, color text) {
+		this.sback = background;
+		this.stxt = text;
 	}
-	Button(String text, float posX, float posY, float posX2, float posY2, color back, color tx, color sBack, color sTx){
-		init(text,posX,posY,posX2,posY2,back,tx,sBack,sTx);
+	Button (String text, float x1, float y1, float x2, float y2) {
+		this.setText(text);
+		this.setPos(x1, y1, x2, y2);
+		this.setColor(color(#00FFFF),color(#0000FF));
+		this.setSelectedColor(color(#0000FF),color(#00FFFF));
+	}
+	Button (float x1, float y1, float x2, float y2) {
+		this.setText("");
+		this.setPos(x1, y1, x2, y2);
+		this.setColor(color(#00FFFF),color(#0000FF));
+		this.setSelectedColor(color(#0000FF),color(#00FFFF));
 	}
 }

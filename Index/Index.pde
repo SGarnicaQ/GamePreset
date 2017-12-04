@@ -1,9 +1,7 @@
-PFont font;
 Button button;
 void setup() {
-	size(1000, 1000);
-	font = loadFont("Font/ARESSENCE-48.vlw");							/*Init font type*/
-	button = new Button("button",1/5.0,1/2.0,4/5.0,3/4.0,color(#FF0000),color(#FFFFFF),color(#7A4141),color(#FF0000));
+	size(2600, 1000);
+	button = new Button("BUTTON",width/10,height/3,width*9/10,height*2/3);
 	surface.setResizable(true);
 
 }
@@ -11,8 +9,8 @@ void setup() {
 void draw() {
 	background(0);
 
-	button.paint();
 	if(button.clicked())
 		println("button clicked");
+	button.paint();
 
 }

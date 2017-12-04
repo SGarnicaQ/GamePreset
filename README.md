@@ -5,14 +5,10 @@ Some classes for 3D Game development
 1. Create a new button
 	*	Use the `Button ~` class to create a new object.
 2. Initialize
-	*	Using `~ = new Button("text",posX,posY,posX2,posY2);`
-	*	Using `~ = new Button("text",posX,posY,posX2,posY2,backgroundColor,textColor);`
-	*	Using `~ = new Button("text",posX,posY,posX2,posY2,backgroundColor,textColor,selectedBackgroundColor,selectedTextColor);`
+	*	Using `~ = new Button(posX1,posY1,posX2,posY2);`
+	*	Using `~ = new Button("text",posX1,posY1,posX2,posY2);`
 		*	`"text"`	:	text the appear in the button area.
-		*	`pos`	:	`x`,`y`,`x2`,`y2` are the position of the top-left corner (`x`,`y`), and bottom-right corner (`x2`,`y2`) of the button area.
-		* 	`backgroundColor`	:	color of the button area.
-		*	`textColor`	:	color of the text button.
-		*	`selected color`	:	when the button is selected, the color change to this new color.
+		*	`pos`	:	`x1`,`y1`,`x2`,`y2` are the position of the top-left corner (`x1`,`y1`), and bottom-right corner (`x2`,`y2`) of the button area.
 3. Paint the Button
 	*	Use `~.paint()` to paint the button.
 4. Button actions

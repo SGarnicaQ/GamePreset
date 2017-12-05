@@ -32,6 +32,4 @@ Some classes for 3D Game development
 		*	"path"	:	Reference of the spritePath.
 		*	"tam"	:	Size of each part of the sprite.
 		*	"speed"	:	General speed of the animation
-		*	"start"	:	min values where in the array the animation start.
-		*	"end"	:	min values where in the array the animation end.
-		>	"start" and "end" have to be an JSONObject, where you set all the animation names. See the SpriteConfig example if you dont understand.
+		*	"name"	:	Name of the animation that set an array where the first number is the start, and the second the end of the animation.

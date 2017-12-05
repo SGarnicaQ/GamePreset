@@ -2,18 +2,8 @@
 	"path": "Sprites/PlayerMove.png",
 	"tam": 64,
 	"speed": 0.08,
-	"start":
-	{
-		"up":0,
-		"left":9,
-		"down":18,
-		"right":27,
-	},
-	"end":
-	{
-		"up":8,
-		"left":17,
-		"down":26,
-		"right":35,
-	}
+	"up":[0,8],
+	"left":[9,17],
+	"down":[18,26],
+	"right":[27,35],
 }

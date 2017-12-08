@@ -7,12 +7,12 @@ class Button {
 	float x1, y1, x2, y2;
 	color nback, ntxt, sback, stxt, back, txt;
 	int tHeight, tWidth, mode;
-	boolean toggle;
+	boolean action;
 
 	void paint () {
 		this.resize();
-		this.toggled();
-		if (mode == 1 && toggle) {
+		this.actioned();
+		if (action) {
 			stroke(#FF44E2);
 			strokeWeight(10);
 		} else
@@ -36,9 +36,18 @@ class Button {
 		this.back = this.hover()? this.sback : this.nback;
 		this.txt = this.hover()? this.stxt : this.ntxt;
 	}
-	void toggled () {
-		if (this.mode == 1 && this.clicked())
-			this.toggle = !this.toggle;
+	void actioned () {
+		switch (this.mode) {
+			case 0 :
+			this.action = this.hover() && click;	
+			break;
+			case 1 :
+			this.action = this.clicked()? !this.action : this.action;
+			break;
+			case 2 :
+			this.action = this.hover() && mousePressed;
+			break;	
+		}
 	}
 	boolean hover () {
 		return mouseX > this.x1 && mouseX < this.x2 && mouseY > this.y1 && mouseY < this.y2? true : false;
